@@ -94,7 +94,7 @@ const save = function() {
 
 function getUser(message, match){
     message.guild.members.array.forEach(user => {
-        if (user.displayName.match(match)) {
+        if (user.displayName.toLowerCase().match(match.toLowerCase())) {
             return user
         }
     });    
