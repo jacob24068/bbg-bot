@@ -252,7 +252,7 @@ function leaderboard(message, args){
             if (arr[Length-i]){
                 fields.push({
                     "name": `${i+1} - ${String(message.guild.members.get(arr[Length-i]).displayName)}`,
-                    "value": `${saveData[arr[Length-i]].toLocaleString()} points ${arr[Length-i-1] && (`(Ahead ${(saveData[arr[Length-i]] - saveData[arr[Length-i-1]]).toLocaleString()} points)`) || ""}`
+                    "value": `${(saveData[arr[Length-i]]).toLocaleString()} points ${arr[Length-i-1] && (`(Ahead ${(saveData[arr[Length-i]] - saveData[arr[Length-i-1]]).toLocaleString()} points)`) || ""}`
                   })
             }
         }
