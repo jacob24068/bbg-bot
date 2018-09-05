@@ -230,8 +230,8 @@ function leaderboard(message, args){
     }
     const Length = arr.length - 1
     for(var i = 0; i <= 9; i++) {
-    if (!message.guild.members.get(arr[a-i])) {
-     delete saveData[arr[a-i]]
+    if (!message.guild.members.get(arr[Length-i])) {
+     delete saveData[arr[Length-i]]
       }
     }
     const member = message.mentions.members.first()
@@ -249,10 +249,10 @@ function leaderboard(message, args){
     }else{
         let fields = []
         for (let i = 0; i <= 9; i++){
-            if (arr[a-i]){
+            if (arr[Length-i]){
                 fields.push({
-                    "name": `${i+1} - ${String(message.guild.members.get(arr[a-i]).displayName)}`,
-                    "value": `${saveData[arr[a-i]].toLocaleString()} points ${arr[i-1] && (`(Ahead ${(saveData[arr[a-i]] - saveData[arr[a-i-1]]).toLocaleString()} points)`)}`
+                    "name": `${i+1} - ${String(message.guild.members.get(arr[Length-i]).displayName)}`,
+                    "value": `${saveData[arr[Length-i]].toLocaleString()} points ${arr[i-1] && (`(Ahead ${(saveData[arr[Length-i]] - saveData[arr[Length-i-1]]).toLocaleString()} points)`)}`
                   })
             }
         }
