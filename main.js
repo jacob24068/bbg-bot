@@ -188,7 +188,7 @@ function setPoints(message, args){
         user = getUser(message, args[0])
     }
     if (!user) return
-    saveData[user.id] = args[1]
+    saveData[user.id] = Number(args[1])
     message.channel.send({
         "embed": {
           "title": `Finished.`,        
