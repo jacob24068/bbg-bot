@@ -170,7 +170,7 @@ function points(message, args){
 }
 
 function forceSave(message){
-    if (!isElevated(message.author)) return
+    if (!isElevated(message.member)) return
     save()
     message.channel.send({
         "embed": {
@@ -181,7 +181,7 @@ function forceSave(message){
 }
 
 function setPoints(message, args){
-    if (!isElevated(message.author)) return
+    if (!isElevated(message.member)) return
     let user
     if (args[1]) {
         user = getUser(message, args[0])
@@ -267,8 +267,8 @@ function leaderboard(message, args){
     })}
 }
 
-function poll(message, args){
-    if (!isElevated(message.author)) return
+function poll(message){
+    if (!isElevated(message.member)) return
     let split = message.content.split('"')
     let items = []
     for (i = 1; i < split.length; i + 2) {
