@@ -52,7 +52,7 @@ DiscordClient.on("message", message => {
     }
     if (!message.guild) return
     if (message.author.bot) return
-    if (config.responses[message.content.toLowerCase()]) return message.channel.send(config.responses[message.content.toLowerCase()])
+    //if (config.responses[message.content.toLowerCase()]) return message.channel.send(config.responses[message.content.toLowerCase()])
     if (message.content.substr(0,prefix.length) != prefix) return
     const args = message.content.slice(prefix.length).trim().split(/ +/g)
     const command = args.shift().toLowerCase()
