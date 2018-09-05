@@ -197,6 +197,8 @@ function setPoints(message, args){
       })
 }
 
+let streaming = {}
+
 function streamnotifications(message){
     if (message.member.roles.some(r => ["StreamNotifications"].includes(r.name))) {
         message.member.removeRole(message.guild.roles.find('name', 'StreamNotifications'))
@@ -244,7 +246,7 @@ function leaderboard(message, args){
       let b = arr.length
       if (arr[b - number]) {
         let mem = message.guild.members.get(arr[b-number])
-        message.channel.send(` ${mem.displayName} is in ${ordinal_suffix_of(number)} place is, with ${saveData[mem.id].toLocaleString()} points.`)
+        message.channel.send(`${mem.displayName} is in ${ordinal_suffix_of(number)} place with ${saveData[mem.id].toLocaleString()} points.`)
       }else return message.channel.send(`There is no person in ${ordinal_suffix_of(number)} place.`)
     }else{
         let fields = []
