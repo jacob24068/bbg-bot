@@ -142,19 +142,18 @@ function verify(message){
 }
 
 function points(message, args){
-    if (args[0]) {
+    if (message.mentions.members.first()) {
+        message.channel.send({
+            "embed": {
+              "title": `${message.mentions.members.first().displayName}, you have ${saveData[message.mentions.members.first().id]} points.`,        
+              "color": randomColor()
+            }
+          })
+    }else if (args[0]) {
         let member = getUser(message, args[0])
         if (member) return message.channel.send({
             "embed": {
               "title": `${user.displayName} has ${saveData[user.id]} points.`,        
-              "color": randomColor()
-            }
-          })
-    }
-    else if (message.mentions.members.first()) {
-        message.channel.send({
-            "embed": {
-              "title": `${message.mentions.members.first().displayName}, you have ${saveData[message.mentions.members.first().id]} points.`,        
               "color": randomColor()
             }
           })
@@ -183,11 +182,10 @@ function forceSave(message){
 function setPoints(message, args){
     if (!isElevated(message.member)) return
     let user
-    if (args[1]) {
-        user = getUser(message, args[0])
-    }
-    else if (message.mentions.members.first()) {
+    if (message.mentions.members.first()) {
         user = message.mentions.members.first()
+    }else if (args[1]) {
+        user = getUser(message, args[0])
     }
     if (!user) return
     saveData[user.id] = args[1]
