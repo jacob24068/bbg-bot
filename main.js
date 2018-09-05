@@ -22,19 +22,19 @@ pgClient.query(`SELECT * FROM userdata`, null, (err, res) => {
 const prefix = "!"
 let saveData = {}
 
-client.on("ready", () => {
-    client.user.setPresence({ game: { name: `over Brice's server`, type: 3 } });
-    const guild = client.guilds.get(`459074666137649162`)
-    const notifications = client.channels.get(`459078238283497472`)
-    const log = client.channels.get(`459077897525788692`)
-    const welcome = client.channels.get(`459076914691309609`)
+DiscordClient.on("ready", () => {
+    DiscordClient.user.setPresence({ game: { name: `over Brice's server`, type: 3 } });
+    const guild = DiscordClient.guilds.get(`459074666137649162`)
+    const notifications = DiscordClient.channels.get(`459078238283497472`)
+    const log = DiscordClient.channels.get(`459077897525788692`)
+    const welcome = DiscordClient.channels.get(`459076914691309609`)
     const role = guild.roles.get(`460105041563615234`)
 });
 
 let progress
 const alphabet = ["🇦", "🇧", "🇨", "🇩", "🇪", "🇫", "🇬", "🇭", "🇮", "🇯", "🇰", "🇱", "🇲", "🇳", "🇴", "🇵", "🇶", "🇷", "🇸", "🇹", "🇺", "🇻", "🇼", "🇽", "🇾", "🇿"]
 
-client.on("message", message => {
+DiscordClient.on("message", message => {
     progress++
     if (progress == 5) {
         progress = 0
@@ -298,7 +298,7 @@ function poll(message, args){
 
 //
 
-client.on("presenceUpdate", (old, user) => {
+DiscordClient.on("presenceUpdate", (old, user) => {
     if (!user.roles.some(r => ["Brice"].includes(r.name))) return
     console.log(user.presence)
     let game = user.presence.game
@@ -337,13 +337,13 @@ client.on("presenceUpdate", (old, user) => {
         }
     })
 })
-client.on('guildMemberAdd', member => {
+DiscordClient.on('guildMemberAdd', member => {
     log.send(`${member} has joined at ${new Date()}`)
 });
-client.on('guildMemberRemove', member => {
+DiscordClient.on('guildMemberRemove', member => {
     log.send(`${member} has left at ${new Date()}`)
 });
-client.on('messageDelete', message => {
+DiscordClient.on('messageDelete', message => {
   log.send({
     "embed": {
       "title": `Message deleted`,
