@@ -7,6 +7,9 @@ DiscordClient.login(process.env.BOT_TOKEN);
 const { Client } = require('pg');
 const pgClient = new Client({connectionString: process.env.DATABASE_URL, ssl: true});
 
+//Request
+const request = require('request')
+
 pgClient.connect();
 
 pgClient.query(`SELECT * FROM userdata`, null, (err, res) => {
