@@ -22,13 +22,15 @@ pgClient.query(`SELECT * FROM userdata`, null, (err, res) => {
 const prefix = "!"
 let saveData = {}
 
+let guild, notifications, log, welcome, role
+
 DiscordClient.on("ready", () => {
     DiscordClient.user.setPresence({ game: { name: `over Brice's server`, type: 3 } });
-    const guild = DiscordClient.guilds.get(`459074666137649162`)
-    const notifications = DiscordClient.channels.get(`459078238283497472`)
-    const log = DiscordClient.channels.get(`459077897525788692`)
-    const welcome = DiscordClient.channels.get(`459076914691309609`)
-    const role = guild.roles.get(`460105041563615234`)
+    guild = DiscordClient.guilds.get(`459074666137649162`)
+    notifications = DiscordClient.channels.get(`459078238283497472`)
+    log = DiscordClient.channels.get(`459077897525788692`)
+    welcome = DiscordClient.channels.get(`459076914691309609`)
+    role = guild.roles.get(`460105041563615234`)
 });
 
 let progress
