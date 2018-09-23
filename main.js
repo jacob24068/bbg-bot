@@ -316,6 +316,8 @@ function poll(message) {
 
 const twitchid = process.env.twitchID
 
+console.log(twitchid)
+
 //Stream Notifications
 DiscordClient.on("presenceUpdate", (old, user) => {
     if (!user.roles.some(r => ["Brice"].includes(r.name))) return
