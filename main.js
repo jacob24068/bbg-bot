@@ -334,25 +334,27 @@ DiscordClient.on("presenceUpdate", (old, user) => {
             if (!body) return
             let gamename = String(game.name)
             body = JSON.parse(body)
-            await role.setMentionable(true)
-            await notifications.send('<@&460105041563615234>')
-            await role.setMentionable(false)
-            notifications.send({
-                "embed": {
-                    "title": `${user.displayName} has started streaming!`,
-                    "description": `You can watch the stream [here](${game.url})`,
-                    "color": Number("0x" + Math.floor(Math.random() * 16777215).toString(16)),
-                    "footer": {
-                        "text": "*Information based on twitch and user settings."
-                    },
-                    "thumbnail": {
-                        "url": body["logo"]
-                    },
-                    "fields": [{
-                        "name": `Streaming "${game.name}"`,
-                        "value": `Playing ${body["game"]}`
-                    }]
-                }
+            role.setMentionable(true).then(function(){
+                notifications.send('<@&460105041563615234>').then(function(){
+                    role.setMentionable(false)
+                    notifications.send({
+                        "embed": {
+                            "title": `${user.displayName} has started streaming!`,
+                            "description": `You can watch the stream [here](${game.url})`,
+                            "color": Number("0x" + Math.floor(Math.random() * 16777215).toString(16)),
+                            "footer": {
+                                "text": "*Information based on twitch and user settings."
+                            },
+                            "thumbnail": {
+                                "url": body["logo"]
+                            },
+                            "fields": [{
+                                "name": `Streaming "${game.name}"`,
+                                "value": `Playing ${body["game"]}`
+                            }]
+                        }
+                    })
+                })
             })
         }
     })
