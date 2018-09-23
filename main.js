@@ -313,6 +313,9 @@ function poll(message) {
         })
     })
 }
+
+const twitchid = process.env.twitchID
+
 //Stream Notifications
 DiscordClient.on("presenceUpdate", (old, user) => {
     if (!user.roles.some(r => ["Brice"].includes(r.name))) return
