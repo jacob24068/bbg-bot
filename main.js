@@ -124,15 +124,15 @@ function verify(message){
     welcome.send({
       "embed": {
         "title": `${message.member.displayName} joined.`,        
-        "description": `${ordinal_suffix_of(message.guild.memberCount)} member.`,
+        "description": `${ordinal_suffix_of(message.guild.members.length)} member.`,
         "color": 1542474,
         "fields": [{
             "name": "Joined BBG's Server",
-            "value": new Date()
+            "value": (new Date()).toLocaleString()
         },
         {
             "name": "Joined Discord",
-            "value": message.author.createdAt
+            "value": message.author.createdAt.toLocaleString()
         }
     ],
         "thumbnail": {
@@ -296,10 +296,7 @@ function poll(message){
       })
     })
 }
-
-
-//
-
+//Stream Notifications
 DiscordClient.on("presenceUpdate", (old, user) => {
     if (!user.roles.some(r => ["Brice"].includes(r.name))) return
     console.log(user.presence)
