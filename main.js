@@ -321,12 +321,12 @@ console.log(twitchid)
 //Stream Notifications
 DiscordClient.on("presenceUpdate", (old, user) => {
     if (!user.roles.some(r => ["Brice"].includes(r.name))) return
-    console.log(user.presence)
     let game = user.presence.game
     if (!game && streaming[user.id]) return delete streaming[user.id]
     if (!game) return
     if (!game.streaming && streaming[user.id]) return delete streaming[user.id]
     if (!game.streaming) return
+    if (streaming[user.id]) return
     streaming[user.id] = true
     let username = game.url.split("/")[3]
     request(`https://api.twitch.tv/kraken/channels/${username}?client_id=${twitchid}`, function(err, res, body) {
