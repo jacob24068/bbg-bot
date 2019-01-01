@@ -138,7 +138,7 @@ function verify(message) {
     welcome.send({
         "embed": {
             "title": `${message.member.displayName} joined.`,
-            "description": `${ordinal_suffix_of(message.guild.members.length)} member.`,
+            "description": `${ordinal_suffix_of(message.guild.members.array.length)} member.`,
             "color": 1542474,
             "fields": [{
                     "name": "Joined BBG's Server",
@@ -266,7 +266,7 @@ function leaderboard(message, args) {
     } else {
         let fields = []
         for (let i = 0; i <= 9; i++) {
-            if (arr[Length - i]) {
+            if (arr[Length - i] && arr[Length-i].displayName) {
                 fields.push({
                     "name": `${i+1} - ${String(message.guild.members.get(arr[Length-i]).displayName)}`,
                     "value": `${(saveData[arr[Length-i]]).toLocaleString()} points ${arr[Length-i-1] && (`(Ahead ${(saveData[arr[Length-i]] - saveData[arr[Length-i-1]]).toLocaleString()} points)`) || ""}`
@@ -365,6 +365,7 @@ DiscordClient.on('guildMemberAdd', member => {
 DiscordClient.on('guildMemberRemove', member => {
     log.send(`${member} has left at ${new Date()}`)
 });
+
 DiscordClient.on('messageDelete', message => {
     log.send({
         "embed": {
@@ -372,7 +373,7 @@ DiscordClient.on('messageDelete', message => {
             "color": Number("0x" + Math.floor(Math.random() * 16777215).toString(16)),
             "timestamp": new Date(),
             "fields": [{
-                "name": `Message posted by ${message.author} in ${message.channel} deleted.`,
+                "name": `Message posted by ${message.member.displayName} in ${message.channel.name} deleted.`,
                 "value": message.content
             }]
         }
