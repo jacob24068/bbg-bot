@@ -267,12 +267,15 @@ function leaderboard(message, args) {
         let fields = []
         console.log(arr)
         for (let i = 0; i <= 9; i++) {
-            if (arr[Length - i] && arr[Length-i].displayName) {
+            const member = message.guild.members.get(arr[Length-i])
+            if (arr[Length - i] && member) {
                 console.log(arr[Length - i])
                 fields.push({
-                    "name": `${i+1} - ${String(message.guild.members.get(arr[Length-i]).displayName)}`,
+                    "name": `${i+1} - ${String(member.displayName)}`,
                     "value": `${(saveData[arr[Length-i]]).toLocaleString()} points ${arr[Length-i-1] && (`(Ahead ${(saveData[arr[Length-i]] - saveData[arr[Length-i-1]]).toLocaleString()} points)`) || ""}`
                 })
+            } else if (!member) {
+                delete saveData[arr[Length-i]]
             }
         }
         message.channel.send({
