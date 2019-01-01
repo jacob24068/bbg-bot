@@ -267,6 +267,7 @@ function leaderboard(message, args) {
         let fields = []
         for (let i = 0; i <= 9; i++) {
             if (arr[Length - i] && arr[Length-i].displayName) {
+                console.log(arr[Length - i])
                 fields.push({
                     "name": `${i+1} - ${String(message.guild.members.get(arr[Length-i]).displayName)}`,
                     "value": `${(saveData[arr[Length-i]]).toLocaleString()} points ${arr[Length-i-1] && (`(Ahead ${(saveData[arr[Length-i]] - saveData[arr[Length-i-1]]).toLocaleString()} points)`) || ""}`
