@@ -265,6 +265,7 @@ function leaderboard(message, args) {
         } else return message.channel.send(`There is no person in ${ordinal_suffix_of(number)} place.`)
     } else {
         let fields = []
+        console.log(arr)
         for (let i = 0; i <= 9; i++) {
             if (arr[Length - i] && arr[Length-i].displayName) {
                 console.log(arr[Length - i])
