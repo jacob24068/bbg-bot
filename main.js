@@ -47,8 +47,8 @@ let progress
 const alphabet = ["🇦", "🇧", "🇨", "🇩", "🇪", "🇫", "🇬", "🇭", "🇮", "🇯", "🇰", "🇱", "🇲", "🇳", "🇴", "🇵", "🇶", "🇷", "🇸", "🇹", "🇺", "🇻", "🇼", "🇽", "🇾", "🇿"]
 
 const responses = {
-    "wheresthestream": "https://cdn.discordapp.com/attachments/459077868442615809/536777103639707659/wheresthestream.mp4",
-    "maintenance": "https://cdn.discordapp.com/attachments/459077868442615809/536777100896632840/maintenance.mp4"
+    "!wheresthestream": "https://cdn.discordapp.com/attachments/459077868442615809/536777103639707659/wheresthestream.mp4",
+    "!maintenance": "https://cdn.discordapp.com/attachments/459077868442615809/536777100896632840/maintenance.mp4"
 }
 
 DiscordClient.on("message", message => {
