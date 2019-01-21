@@ -95,7 +95,7 @@ const aliases = {
 }
 
 function roll(message)
-    let number = message.connect.match(/\d+/) || 6
+    let number = message.content.match(/\d+/) || 6
     message.channel.send({
     "embed": {
         "title": `${message.author.username}, you rolled a ${Math.floor(Math.random()*number)}`,
