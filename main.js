@@ -90,9 +90,18 @@ const aliases = {
     "leaderboard": leaderboard,
     "top": leaderboard,
     "8ball": eightball,
-    "8b": eightball
-
+    "8b": eightball,
+    "roll": roll
 }
+
+function roll(message)
+    let number = message.connect.match(/\d+/) || 6
+    message.channel.send({
+    "embed": {
+        "title": `${message.author.username}, you rolled a ${Math.floor(Math.random()*number)}`,
+        "color": Number("0x"+Math.floor(Math.random()*16777215).toString(16)),
+    }
+})
 
 const eightballanswers = {
     good: [0x098105, ["It is certain", "It is decidedly so", "Without a doubt", "Yes definitely", "You may rely on it", "As I see it, yes", "Most likely", "Outlook good", "Yes", "Signs point to yes"]],
@@ -162,7 +171,7 @@ function verify(message) {
     welcome.send({
         "embed": {
             "title": `${message.member.displayName} joined.`,
-            "description": `${ordinal_suffix_of(message.guild.members.array.length)} member.`,
+            "description": `${ordinal_suffix_of(message.guild.memberCount)} member.`,
             "color": 1542474,
             "fields": [{
                     "name": "Joined BBG's Server",
