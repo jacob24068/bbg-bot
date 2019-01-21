@@ -46,6 +46,11 @@ DiscordClient.on("ready", () => {
 let progress
 const alphabet = ["🇦", "🇧", "🇨", "🇩", "🇪", "🇫", "🇬", "🇭", "🇮", "🇯", "🇰", "🇱", "🇲", "🇳", "🇴", "🇵", "🇶", "🇷", "🇸", "🇹", "🇺", "🇻", "🇼", "🇽", "🇾", "🇿"]
 
+const responses = {
+    "wheresthestream": "https://cdn.discordapp.com/attachments/459077868442615809/536777103639707659/wheresthestream.mp4",
+    "maintenance": "https://cdn.discordapp.com/attachments/459077868442615809/536777100896632840/maintenance.mp4"
+}
+
 DiscordClient.on("message", message => {
     progress++
     if (progress == 5) {
@@ -64,7 +69,7 @@ DiscordClient.on("message", message => {
     }
     if (!message.guild) return
     if (message.author.bot) return
-    //if (config.responses[message.content.toLowerCase()]) return message.channel.send(config.responses[message.content.toLowerCase()])
+    if ("!"+responses[message.content.toLowerCase()]) return message.channel.send("!"+responses[message.content.toLowerCase()])
     if (message.content.substr(0, prefix.length) != prefix) return
     const args = message.content.slice(prefix.length).trim().split(/ +/g)
     const command = args.shift().toLowerCase()
