@@ -95,7 +95,7 @@ const eightballanswers = {
     bad:[0xf7131e, ["Don't count on it", "My reply is no", "My sources say no", "Outlook not so good", "Very doubtful"]]
 }
 
-const eightball = function(message) {
+function eightball(message) {
     const a = Math.random()
     const b = a < 0.3 && eightballanswers.bad || a < 0.6 && a > 0.3 && eightballanswers.med || a > 0.6 && eightballanswers.good
     message.channel.send({
