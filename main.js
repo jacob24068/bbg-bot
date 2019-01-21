@@ -59,7 +59,7 @@ DiscordClient.on("message", message => {
         saveData[message.author.id] = 0
     }
     saveData[message.author.id] = saveData[message.author.id] + 1
-    if (saveData[message.author.id] > 2000 && !message.member.roles.some(r => ["Regular"].includes(r.name))) {
+    if (saveData[message.author.id] > 250 && !message.member.roles.some(r => ["Regular"].includes(r.name))) {
         message.member.addRole(message.guild.roles.find('name', 'Regular'))
     }
     if (!message.guild) return
@@ -83,9 +83,28 @@ const aliases = {
     "startpoll": poll,
     "poll": poll,
     "leaderboard": leaderboard,
-    "top": leaderboard
+    "top": leaderboard,
+    "8ball": eightball,
+    "8b": eightball
 
 }
+
+const eightballanswers = {
+    good: [0x098105, ["It is certain", "It is decidedly so", "Without a doubt", "Yes definitely", "You may rely on it", "As I see it, yes", "Most likely", "Outlook good", "Yes", "Signs point to yes"]],
+    med: [0xf8da1f, ["Reply hazy try again", "Ask again later", "Better not tell you now", "Cannot predict now", "Concentrate and ask again"]],
+    bad:[0xf7131e, ["Don't count on it", "My reply is no", "My sources say no", "Outlook not so good", "Very doubtful"]]
+}
+
+const eightball = function(message) {
+    const a = Math.random()
+    const b = a < 0.3 && eightballanswers.bad || a < 0.6 && a > 0.3 && eightballanswers.med || a > 0.6 && eightballanswers.good
+    message.channel.send({
+      "embed": {
+          "title": b[1][Math.floor(Math.random()*b[1].length)],
+          "color": b[0]
+      }
+    })
+  }
 
 function isElevated(guildMember) {
     return guildMember.roles.some(r => ["Bot", "Moderator", "Adminstrator", "Brice"].includes(r.name))
