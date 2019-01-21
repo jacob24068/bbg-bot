@@ -97,7 +97,7 @@ const aliases = {
 function roll(message)
     message.channel.send({
     "embed": {
-        "title": `${message.author.username}, you rolled a ${Math.floor(Math.random()*(message.content.match(/\d+/) || 6))}`,
+        "title": `${message.author.username}, you rolled a ${Math.floor(Math.random()*(message.content.match("\d+") || 6))}`,
         "color": Number("0x"+Math.floor(Math.random()*16777215).toString(16))
     }
 })
